@@ -1,6 +1,7 @@
 package com.example.HuellasYyo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
@@ -40,19 +42,22 @@ public class Usuario {
 
     @OneToOne(mappedBy = "usuario")
     @JsonBackReference
+    @JsonIgnore
     private MascotaPreferencia mascotaPreferencia;
 
     @OneToOne(mappedBy = "usuario")
     @JsonBackReference
+    @JsonIgnore
     private ConvivenciaPreferencia convivenciaPreferencia;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonManagedReference
+    @JsonIgnore
     private List<RealizaMatch> realizaMatches = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonManagedReference
+    @JsonIgnore
     private List<ProcesoAdopcion> procesoAdopcions = new ArrayList<>();
-
 
 }

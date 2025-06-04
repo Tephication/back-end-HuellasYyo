@@ -1,5 +1,6 @@
 package com.example.HuellasYyo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,9 +41,11 @@ public class Mascota {
 
     @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
     @JsonManagedReference
+    @JsonIgnore
     private List<RealizaMatch> realizaMatches = new ArrayList<>();
 
     @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
     @JsonManagedReference
+    @JsonIgnore
     private List<ProcesoAdopcion> procesoAdopcions = new ArrayList<>();
 }
