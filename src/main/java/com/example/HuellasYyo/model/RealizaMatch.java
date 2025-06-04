@@ -1,5 +1,6 @@
 package com.example.HuellasYyo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,9 +19,16 @@ public class RealizaMatch {
     private boolean matchMascota;
     @Column(precision = 5, scale = 2, nullable = false)
     private BigDecimal porcentajeAfinidad;
-    @Column(nullable = false)
-    private Long fkIdUsuario;
-    @Column(nullable = false)
-    private Long fkIdMascota;
+
+    @ManyToOne
+    @JoinColumn(name = "fkidUsuario")
+    @JsonBackReference
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "fkidMascota")
+    @JsonBackReference
+    private Mascota mascota;
+
 
 }

@@ -1,9 +1,13 @@
 package com.example.HuellasYyo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -33,4 +37,12 @@ public class Mascota {
     @Column(nullable = false)
     private boolean disponibilidad;
     private String otrasCaracteristicas;
+
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<RealizaMatch> realizaMatches = new ArrayList<>();
+
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ProcesoAdopcion> procesoAdopcions = new ArrayList<>();
 }

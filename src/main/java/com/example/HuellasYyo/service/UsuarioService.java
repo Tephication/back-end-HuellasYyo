@@ -2,7 +2,7 @@ package com.example.HuellasYyo.service;
 
 import com.example.HuellasYyo.model.Usuario;
 import com.example.HuellasYyo.repository.IUsuarioRepository;
-import com.example.HuellasYyo.repository.UsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

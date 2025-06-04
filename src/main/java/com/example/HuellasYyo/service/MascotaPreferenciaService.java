@@ -1,6 +1,6 @@
 package com.example.HuellasYyo.service;
 
-import com.example.HuellasYyo.model.Mascota;
+
 import com.example.HuellasYyo.model.MascotaPreferencia;
 import com.example.HuellasYyo.repository.IMascotaPreferenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class MascotaPreferenciaService implements IMascotaPreferenciaService{
             mascotaPreferenciaExistente.setEspecieBuscada(mascotaPreferenciaEditado.getEspecieBuscada());
             mascotaPreferenciaExistente.setEdadPreferencia(mascotaPreferenciaEditado.getEdadPreferencia());
             mascotaPreferenciaExistente.setTamanoPreferencia(mascotaPreferenciaEditado.getTamanoPreferencia());
-            mascotaPreferenciaExistente.setFkIdUsuario(mascotaPreferenciaEditado.getFkIdUsuario());
+
 
             mascotaPreferenciaRepository.save(mascotaPreferenciaExistente);
         } else {

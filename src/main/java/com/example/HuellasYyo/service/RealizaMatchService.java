@@ -1,7 +1,7 @@
 package com.example.HuellasYyo.service;
 
 import com.example.HuellasYyo.model.RealizaMatch;
-import com.example.HuellasYyo.model.Usuario;
+
 import com.example.HuellasYyo.repository.IRealizaMatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,8 +45,6 @@ public class RealizaMatchService implements IRealizaMatchService{
         if (realizaMatchExistente != null){
             realizaMatchExistente.setMatchMascota(realizaMatchEditado.isMatchMascota());
             realizaMatchExistente.setPorcentajeAfinidad(realizaMatchEditado.getPorcentajeAfinidad());
-            realizaMatchExistente.setFkIdMascota (realizaMatchEditado.getFkIdMascota());
-            realizaMatchExistente.setFkIdUsuario(realizaMatchEditado.getFkIdUsuario());
 
             realizaMatchRepository.save(realizaMatchExistente);
         } else {

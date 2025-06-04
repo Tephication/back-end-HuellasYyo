@@ -1,7 +1,7 @@
 package com.example.HuellasYyo.service;
 
 import com.example.HuellasYyo.model.ProcesoAdopcion;
-import com.example.HuellasYyo.model.RealizaMatch;
+
 import com.example.HuellasYyo.repository.IProcesoAdopcionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,8 +49,7 @@ public class ProcesoAdopcionService implements IProcesoAdopcionService{
             procesoAdopcionExistente.setUrlVideo(procesoAdopcionEditado.getUrlVideo());
             procesoAdopcionExistente.setUrlCedula(procesoAdopcionEditado.getUrlCedula());
             procesoAdopcionExistente.setUrlAntecedentesPenales(procesoAdopcionEditado.getUrlAntecedentesPenales());
-            procesoAdopcionExistente.setFkIdUsuario(procesoAdopcionEditado.getFkIdUsuario());
-            procesoAdopcionExistente.setFkIdMascota(procesoAdopcionEditado.getFkIdMascota());
+
 
             procesoAdopcionRepository.save(procesoAdopcionExistente);
         } else {

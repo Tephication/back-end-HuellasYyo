@@ -1,7 +1,7 @@
 package com.example.HuellasYyo.service;
 
 import com.example.HuellasYyo.model.ConvivenciaPreferencia;
-import com.example.HuellasYyo.model.MascotaPreferencia;
+
 import com.example.HuellasYyo.repository.IConvivenciaPreferenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class ConvivenciaPreferenciaService implements IConvivenciaPreferenciaSer
             convivenciaPreferenciaExistente.setTipoVivienda(convivenciaPreferenciaEditado.getTipoVivienda());
             convivenciaPreferenciaExistente.setAdiestramientoOfrecido(convivenciaPreferenciaEditado.getAdiestramientoOfrecido());
             convivenciaPreferenciaExistente.setViajesEnAuto(convivenciaPreferenciaEditado.isViajesEnAuto());
-            convivenciaPreferenciaExistente.setFkIdUsuario(convivenciaPreferenciaEditado.getFkIdUsuario());
+
 
             convivenciaPreferenciaRepository.save(convivenciaPreferenciaExistente);
         } else {

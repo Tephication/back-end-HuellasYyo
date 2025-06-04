@@ -1,5 +1,6 @@
 package com.example.HuellasYyo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,10 @@ public class MascotaPreferencia {
     private String edadPreferencia;
     @Column(nullable = false,length = 10)
     private String tamanoPreferencia;
-    @Column(nullable = false)
-    private Long fkIdUsuario;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fkIdUsuario", referencedColumnName = "idUsuario")
+    @JsonManagedReference
+    private Usuario usuario;
+
 }

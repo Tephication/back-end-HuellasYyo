@@ -1,7 +1,7 @@
 package com.example.HuellasYyo.service;
 
 import com.example.HuellasYyo.model.Mascota;
-import com.example.HuellasYyo.model.ProcesoAdopcion;
+
 import com.example.HuellasYyo.repository.IMascotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

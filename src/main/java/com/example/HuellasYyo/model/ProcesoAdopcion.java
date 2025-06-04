@@ -1,5 +1,6 @@
 package com.example.HuellasYyo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,8 +31,15 @@ public class ProcesoAdopcion {
     @Lob
     @Column(columnDefinition = "TEXT")
     private String urlAntecedentesPenales;
-    @Column(nullable = false)
-    private Long fkIdUsuario;
-    @Column(nullable = false)
-    private Long fkIdMascota;
+
+
+    @ManyToOne
+    @JoinColumn(name = "fkidUsuario")
+    @JsonBackReference
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "fkidMascota")
+    @JsonBackReference
+    private Mascota mascota;
 }

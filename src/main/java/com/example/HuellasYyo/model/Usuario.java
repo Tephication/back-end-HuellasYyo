@@ -1,5 +1,7 @@
 package com.example.HuellasYyo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,10 +31,28 @@ public class Usuario {
     @Lob
     @Column(nullable = false,columnDefinition = "TEXT")
     private String urlImagenUsuario;
-    @Column(nullable = false)
+
     private LocalDate fechaNacimiento;
     @Column(nullable = false)
     private boolean estado;
     @Column(nullable = false,length = 20)
     private String tipoUsuario;
+
+    @OneToOne(mappedBy = "usuario")
+    @JsonBackReference
+    private MascotaPreferencia mascotaPreferencia;
+
+    @OneToOne(mappedBy = "usuario")
+    @JsonBackReference
+    private ConvivenciaPreferencia convivenciaPreferencia;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<RealizaMatch> realizaMatches = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ProcesoAdopcion> procesoAdopcions = new ArrayList<>();
+
+
 }

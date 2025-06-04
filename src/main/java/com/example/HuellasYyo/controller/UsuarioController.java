@@ -34,7 +34,7 @@ public class UsuarioController {
             }
         }
 
-        @PostMapping
+        @PostMapping(consumes = {"application/json", "application/json;charset=UTF-8"})
         public ResponseEntity<String> crearUsuario(@RequestBody Usuario info) {
             usuarioService.save(info);
             return ResponseEntity.ok("Usuario creado con éxito");
