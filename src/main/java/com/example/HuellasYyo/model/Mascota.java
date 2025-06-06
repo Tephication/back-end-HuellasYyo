@@ -37,6 +37,8 @@ public class Mascota {
     private String urlImagenMascota;
     @Column(nullable = false)
     private boolean disponibilidad;
+    @Lob
+    @Column(nullable = false,columnDefinition = "TEXT")
     private String otrasCaracteristicas;
 
     @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)

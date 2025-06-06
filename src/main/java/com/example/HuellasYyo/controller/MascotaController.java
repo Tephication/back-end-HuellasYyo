@@ -4,6 +4,7 @@ import com.example.HuellasYyo.model.Mascota;
 import com.example.HuellasYyo.service.MascotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +18,12 @@ public class MascotaController {
     public MascotaController(MascotaService mascotaService) {
         this.mascotaService = mascotaService;
     }
-    @GetMapping
+    @GetMapping("/TraerMascota")
     public List<Mascota> obtenerMascota() {
         return mascotaService.obtenerDatos();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/buscarMascota/{id}")
     public ResponseEntity<Mascota> obtenerPorId(@PathVariable("id") Long id) {
         Mascota mascota = mascotaService.encontrarPorId(id);
         if (mascota != null) {
