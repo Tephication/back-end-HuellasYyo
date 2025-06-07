@@ -2,6 +2,7 @@ package com.example.HuellasYyo.controller;
 
 import com.example.HuellasYyo.JwtUtil;
 import com.example.HuellasYyo.dto.UsuarioDto;
+import com.example.HuellasYyo.dto.UsuarioEditadoDto;
 import com.example.HuellasYyo.model.Usuario;
 import com.example.HuellasYyo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/editarUsuario/{id}")
-    public ResponseEntity<String> editarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioEditado) {
+    public ResponseEntity<String> editarUsuario(@PathVariable Long id, @RequestBody UsuarioEditadoDto usuarioEditado) {
+        System.out.println("📩 Recibida solicitud para editar usuario con ID: " + id);
         try {
             usuarioService.editarUsuario(id, usuarioEditado);
             return ResponseEntity.ok("Usuario editado con éxito");

@@ -43,7 +43,7 @@ public class RealizaMatchService implements IRealizaMatchService{
     public void editarRealizaMatch(Long id, RealizaMatch realizaMatchEditado) {
         RealizaMatch realizaMatchExistente = realizaMatchRepository.findById(id).orElse(null);
         if (realizaMatchExistente != null){
-            realizaMatchExistente.setMatchMascota(realizaMatchEditado.isMatchMascota());
+            realizaMatchExistente.setMatchMascota(realizaMatchEditado.getMatchMascota());
             realizaMatchExistente.setPorcentajeAfinidad(realizaMatchEditado.getPorcentajeAfinidad());
 
             realizaMatchRepository.save(realizaMatchExistente);
@@ -51,5 +51,27 @@ public class RealizaMatchService implements IRealizaMatchService{
             throw new RuntimeException("Realiza match no encontrado con el Id " + id);
         }
 
+    }
+
+    @Override
+    public List<RealizaMatch> posibleMatch(Long id) {
+        return realizaMatchRepository.findMatchPendientesByUsuarioId(id);
+    }
+
+    @Override
+    public void like(Long id, Boolean reaccion) {
+        RealizaMatch realizaMatchExistente = realizaMatchRepository.findById(id).orElse(null);
+        if (realizaMatchExistente != null){
+            realizaMatchExistente.setMatchMascota(reaccion);
+
+            realizaMatchRepository.save(realizaMatchExistente);
+        } else {
+            throw new RuntimeException("Realiza match no encontrado con el Id " + id);
+        }
+    }
+
+    @Override
+    public List<RealizaMatch> buscarMatches(Long id) {
+        return realizaMatchRepository.findMatchByUsuarioId(id);
     }
 }

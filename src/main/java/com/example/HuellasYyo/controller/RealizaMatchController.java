@@ -34,6 +34,26 @@ public class RealizaMatchController {
         }
     }
 
+    @GetMapping("/posibleMatch/{id}")
+    public ResponseEntity<List <RealizaMatch>> obtenerPosibleMatch (@PathVariable("id") Long id){
+        List <RealizaMatch> realizaMatch = realizaMatchService.posibleMatch(id);
+        if (realizaMatch != null) {
+            return ResponseEntity.ok(realizaMatch);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/buscarMatches/{id}")
+    public ResponseEntity<List <RealizaMatch>> obtenerMatches (@PathVariable("id") Long id){
+        List <RealizaMatch> realizaMatch = realizaMatchService.buscarMatches(id);
+        if (realizaMatch != null) {
+            return ResponseEntity.ok(realizaMatch);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<String> crearRealizaMatch(@RequestBody RealizaMatch info) {
         realizaMatchService.save(info);
@@ -55,5 +75,21 @@ public class RealizaMatchController {
         realizaMatchService.deleteRealizaMatch(id);
         return ResponseEntity.ok("Realiza match eliminado con éxito");
     }
+
+    @PatchMapping("/reaccion/{id}")
+    public ResponseEntity<String> cambiarReaccion(
+            @PathVariable Long id,
+            @RequestParam Boolean matchMascota) {
+
+        try {
+            realizaMatchService.like(id, matchMascota);
+            return ResponseEntity.ok("Realiza match editado con éxito");
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
 
 }

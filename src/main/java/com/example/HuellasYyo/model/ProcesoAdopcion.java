@@ -1,6 +1,7 @@
 package com.example.HuellasYyo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class ProcesoAdopcion {
 
     @ManyToOne
     @JoinColumn(name = "fkidUsuario")
-    @JsonBackReference
+    @JsonIgnoreProperties({"realizaMatches", "hibernateLazyInitializer", "handler"})
     private Usuario usuario;
 
     @ManyToOne

@@ -1,5 +1,7 @@
 package com.example.HuellasYyo.service;
 
+import com.example.HuellasYyo.dto.UsuarioDto;
+import com.example.HuellasYyo.dto.UsuarioEditadoDto;
 import com.example.HuellasYyo.model.Usuario;
 import com.example.HuellasYyo.repository.IUsuarioRepository;
 
@@ -46,26 +48,28 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
-    public void editarUsuario(Long id, Usuario usuarioEditado) {
+    public void editarUsuario(Long id, UsuarioEditadoDto usuarioDto) {
         Usuario usuarioExistente = usuarioRepository.findById(id).orElse(null);
-        if (usuarioExistente != null){
-            usuarioExistente.setNombreCompleto(usuarioEditado.getNombreCompleto());
-            usuarioExistente.setTelefono(usuarioEditado.getTelefono());
-            usuarioExistente.setCorreo(usuarioEditado.getCorreo());
-            usuarioExistente.setContrasena(usuarioEditado.getContrasena());
-            usuarioExistente.setUrlImagenUsuario(usuarioEditado.getUrlImagenUsuario());
-            usuarioExistente.setFechaNacimiento(usuarioEditado.getFechaNacimiento());
-            usuarioExistente.setEstado(usuarioEditado.isEstado());
-            usuarioExistente.setTipoUsuario(usuarioEditado.getTipoUsuario());
+
+        if (usuarioExistente != null) {
+            usuarioExistente.setNombreCompleto(usuarioDto.getNombreCompleto());
+            usuarioExistente.setTelefono(usuarioDto.getTelefono());
+            usuarioExistente.setCorreo(usuarioDto.getCorreo());
+
+            // Solo codifica y actualiza si viene una nueva contraseña no vacía
+            if (usuarioDto.getContrasena() != null && !usuarioDto.getContrasena().isBlank()) {
+                usuarioExistente.setContrasena(passwordEncoder.encode(usuarioDto.getContrasena()));
+            }
+
+            usuarioExistente.setUrlImagenUsuario(usuarioDto.getUrlImagenUsuario());
 
             usuarioRepository.save(usuarioExistente);
         } else {
             throw new RuntimeException("Usuario no encontrado con el Id " + id);
         }
-
     }
 
-    // Métdo de carga de usuario implementado desde UserDetailsService
+    // Método de carga de usuario implementado desde UserDetailsService
     public UserDetails loadUserByCorreo(String correo) throws UsernameNotFoundException {
         Usuario user = usuarioRepository.buscarPorCorreo(correo);
         if (user == null) {

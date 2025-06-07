@@ -10,4 +10,7 @@ public interface IRealizaMatchService {
     void save (RealizaMatch realizaMatchGuardado);
     void deleteRealizaMatch(Long id);
     void editarRealizaMatch(Long id, RealizaMatch realizaMatchEditado);
+    List<RealizaMatch> posibleMatch(Long id);
+    void like(Long id, Boolean reaccion);
+    List<RealizaMatch> buscarMatches(Long id);
 }

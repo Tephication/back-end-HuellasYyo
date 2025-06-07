@@ -41,22 +41,18 @@ public class Usuario {
     private String tipoUsuario;
 
     @OneToOne(mappedBy = "usuario")
-    @JsonBackReference
     @JsonIgnore
     private MascotaPreferencia mascotaPreferencia;
 
     @OneToOne(mappedBy = "usuario")
-    @JsonBackReference
     @JsonIgnore
     private ConvivenciaPreferencia convivenciaPreferencia;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonManagedReference
     @JsonIgnore
     private List<RealizaMatch> realizaMatches = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonManagedReference
     @JsonIgnore
     private List<ProcesoAdopcion> procesoAdopcions = new ArrayList<>();
 
