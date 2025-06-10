@@ -18,9 +18,15 @@ public class MascotaController {
     public MascotaController(MascotaService mascotaService) {
         this.mascotaService = mascotaService;
     }
+
     @GetMapping("/TraerMascota")
     public List<Mascota> obtenerMascota() {
         return mascotaService.obtenerDatos();
+    }
+
+    @GetMapping("/TraerMascotaPortada")
+    public List<Mascota> obtenerMascotaPortada() {
+        return mascotaService.obtenerDatos8Mascotas();
     }
 
     @GetMapping("/buscarMascota/{id}")
@@ -39,6 +45,7 @@ public class MascotaController {
         return ResponseEntity.ok("Mascota creada con éxito");
 
     }
+
     @PutMapping("/editarMascota/{id}")
     public ResponseEntity<String> editarMascota(@PathVariable Long id, @RequestBody Mascota mascotaEditado) {
         try {

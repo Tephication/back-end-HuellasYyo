@@ -11,4 +11,7 @@ import java.util.List;
 public interface IMascotaRepository extends JpaRepository<Mascota, Long> {
     @Query("SELECT m FROM Mascota m WHERE m.disponibilidad = true")
     List<Mascota> encontrarMascotasDisponibles();
+
+    @Query(value = "SELECT * FROM mascota ORDER BY RAND() LIMIT 8", nativeQuery = true)
+    List<Mascota> find8RandomMascotas();
 }

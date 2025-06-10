@@ -10,4 +10,5 @@ public interface IMascotaService {
     void save (Mascota mascotaGuardado);
     void deleteMascota(Long id);
     void editarMascota(Long id, Mascota mascotaEditado);
+    List<Mascota> obtenerDatos8Mascotas();
 }

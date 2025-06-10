@@ -62,4 +62,9 @@ public class MascotaService implements IMascotaService {
         }
 
     }
+
+    @Override
+    public List<Mascota> obtenerDatos8Mascotas() {
+        return mascotaRepository.find8RandomMascotas();
+    }
 }

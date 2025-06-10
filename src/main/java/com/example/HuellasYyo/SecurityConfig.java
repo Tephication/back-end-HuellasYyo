@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // <- Permite todas las OPTIONS
-                        .requestMatchers( "/usuarios/crearUsuario","/usuarios/login","mascota/buscarMascota/{id}","mascota/TraerMascota").permitAll()
+                        .requestMatchers( "/usuarios/crearUsuario","/usuarios/login","mascota/buscarMascota/{id}","mascota/TraerMascota","/mascota/TraerMascotaPortada").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
