@@ -1,6 +1,6 @@
 package com.example.HuellasYyo.service;
 
-import com.example.HuellasYyo.dto.UsuarioDto;
+import com.example.HuellasYyo.dto.PreferenciasDTO;
 import com.example.HuellasYyo.dto.UsuarioEditadoDto;
 import com.example.HuellasYyo.model.Usuario;
 
@@ -12,4 +12,6 @@ public interface IUsuarioService {
     void save (Usuario usuarioGuardado);
     void deleteUsuario(Long id);
     void editarUsuario(Long id, UsuarioEditadoDto usuarioDto);
+    void agregarPreferenciasAlUsuario(Long idUsuario, PreferenciasDTO preferenciasDTO);
+    PreferenciasDTO encontrarPreferenciasPorId(Long idUsuario);
 }

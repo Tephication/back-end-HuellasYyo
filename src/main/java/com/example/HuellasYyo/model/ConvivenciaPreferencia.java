@@ -16,15 +16,15 @@ public class ConvivenciaPreferencia {
     private Long idConvivencia;
     @Column(nullable = false)
     private boolean experiencia;
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false,length = 30)
     private String dedicacionTiempo;
     @Column(nullable = false)
     private boolean compatibilidadNinos;
     @Column(nullable = false)
     private boolean compatibilidadMascotas;
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false,length = 30)
     private String tipoVivienda;
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false,length = 30)
     private String adiestramientoOfrecido;
     @Column(nullable = false)
     private boolean viajesEnAuto;
@@ -32,6 +32,5 @@ public class ConvivenciaPreferencia {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fkIdUsuario", referencedColumnName = "idUsuario")
-    @JsonManagedReference
     private Usuario usuario;
 }

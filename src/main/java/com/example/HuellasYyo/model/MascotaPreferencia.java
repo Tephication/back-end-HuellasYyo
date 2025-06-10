@@ -14,20 +14,19 @@ public class MascotaPreferencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMascotaPreferencia;
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false,length = 30)
     private String caracterPreferencia;
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false,length = 30)
     private String sexoPreferencia;
     @Column(nullable = false,length = 50)
     private String especieBuscada;
     @Column(nullable = false,length = 50)
     private String edadPreferencia;
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false,length = 30)
     private String tamanoPreferencia;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fkIdUsuario", referencedColumnName = "idUsuario")
-    @JsonManagedReference
     private Usuario usuario;
 
 }
