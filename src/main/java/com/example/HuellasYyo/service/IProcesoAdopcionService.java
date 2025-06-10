@@ -7,7 +7,7 @@ import java.util.List;
 public interface IProcesoAdopcionService {
     List<ProcesoAdopcion> obtenerDatos();
     ProcesoAdopcion encontrarPorId(Long id);
-    void save (ProcesoAdopcion procesoAdopcionGuardado);
+    void save (Long idUsuario, Long idMascota, String estado);
     void deleteProcesoAdopcion(Long id);
     void editarProcesoAdopcion(Long id, ProcesoAdopcion procesoAdopcionEditado);
 }

@@ -15,7 +15,7 @@ public class ProcesoAdopcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProcesoAdopcion;
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false, length = 50)
     private String estado;
     @Lob
     @Column(columnDefinition = "TEXT")
@@ -36,11 +36,9 @@ public class ProcesoAdopcion {
 
     @ManyToOne
     @JoinColumn(name = "fkidUsuario")
-    @JsonIgnoreProperties({"realizaMatches", "hibernateLazyInitializer", "handler"})
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "fkidMascota")
-    @JsonBackReference
     private Mascota mascota;
 }

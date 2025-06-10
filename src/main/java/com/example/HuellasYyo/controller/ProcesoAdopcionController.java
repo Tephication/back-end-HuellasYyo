@@ -33,12 +33,30 @@ public class ProcesoAdopcionController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<String> crearProcesoAdopcion(@RequestBody ProcesoAdopcion info) {
-        procesoAdopcionService.save(info);
-        return ResponseEntity.ok("Proceso de adopción creado con éxito");
+    @PostMapping("/usuario/{idUsuario}/mascota/{idMascota}/estado/{estado}")
+    public ResponseEntity<String> crearProcesoAdopcion(
+            @PathVariable Long idUsuario,
+            @PathVariable Long idMascota,
+            @PathVariable String estado) {
 
+        // Validación básica de los path variables
+        if (idUsuario == null || idMascota == null || estado == null || estado.isBlank()) {
+            return ResponseEntity.badRequest().body("Parámetros inválidos");
+        }
+
+        // Validar el estado (ajusta según tus valores permitidos)
+        if (!List.of("PENDIENTE", "APROBADO", "RECHAZADO").contains(estado.toUpperCase())) {
+            return ResponseEntity.badRequest().body("Estado no válido");
+        }
+
+        try {
+            procesoAdopcionService.save(idUsuario, idMascota,estado);
+            return ResponseEntity.ok("Proceso de adopción guardado con éxito");
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Error al guardar el proceso: " + e.getMessage());
+        }
     }
+
     @PutMapping("/editarProcesoAdopcion/{id}")
     public ResponseEntity<String> editarProcesoAdopcion(@PathVariable Long id, @RequestBody ProcesoAdopcion procesoAdopcionEditado) {
         try {

@@ -22,9 +22,10 @@ public interface IRealizaMatchRepository extends JpaRepository<RealizaMatch, Lon
     List<RealizaMatch> findMatchPendientesByUsuarioId(@Param("idUsuario") Long idUsuario);
 
     @Query("SELECT rm FROM RealizaMatch rm " +
-            "JOIN FETCH rm.mascota " +
+            "JOIN FETCH rm.mascota m " +
             "WHERE rm.usuario.id = :idUsuario " +
-            "AND rm.matchMascota IS TRUE ")
+            "AND rm.matchMascota IS TRUE " +
+            "AND m.disponibilidad = true")
     List<RealizaMatch> findMatchByUsuarioId(@Param("idUsuario") Long idUsuario);
 
     Optional<RealizaMatch> findByUsuarioAndMascota(Usuario usuario, Mascota mascota);
