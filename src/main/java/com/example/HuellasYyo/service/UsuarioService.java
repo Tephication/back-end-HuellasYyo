@@ -23,16 +23,18 @@ public class UsuarioService implements IUsuarioService {
     private final IUsuarioRepository usuarioRepository;
     private final IConvivenciaPreferenciaRepository convivenciaRepo;
     private final IMascotaPreferenciaRepository mascotaRepo;
+    private final RealizaMatchService realizaMatchService;
 
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UsuarioService(IUsuarioRepository usuarioRepository, IConvivenciaPreferenciaRepository convivenciaRepo, IMascotaPreferenciaRepository mascotaRepo) {
+    public UsuarioService(IUsuarioRepository usuarioRepository, IConvivenciaPreferenciaRepository convivenciaRepo, IMascotaPreferenciaRepository mascotaRepo, RealizaMatchService realizaMatchService) {
         this.usuarioRepository = usuarioRepository;
         this.convivenciaRepo = convivenciaRepo;
         this.mascotaRepo = mascotaRepo;
+        this.realizaMatchService = realizaMatchService;
     }
 
     @Override
@@ -119,6 +121,7 @@ public class UsuarioService implements IUsuarioService {
 
         // Guardar el usuario (aunque en este flujo, no sería estrictamente necesario si sólo lees)
         usuarioRepository.save(usuario);
+        realizaMatchService.actualizarMatchesPorNuevaPreferencia(usuario);
     }
 
     @Override
@@ -171,6 +174,7 @@ public class UsuarioService implements IUsuarioService {
             convivenciaRepo.save(convivencia);
             mascotaRepo.save(mascota);
             usuarioRepository.save(usuario);
+            realizaMatchService.actualizarMatchesPorEdicionUsuario(usuario);
         } else {
             // Si alguna preferencia no existe, se crea desde cero
             agregarPreferenciasAlUsuario(idUsuario, dto);

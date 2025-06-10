@@ -18,27 +18,29 @@ public class Mascota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMascota;
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false, length = 100)
     private String nombre;
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false, length = 100)
+    private String descripcion;
+    @Column(nullable = false, length = 10)
     private String especie;
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false, length = 10)
     private String sexo;
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false, length = 10)
     private String caracter;
-    @Column(nullable = false,length = 2)
+    @Column(nullable = false, length = 2)
     private String edad;
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false, length = 10)
     private String tamano;
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false, length = 100)
     private String raza;
     @Lob
-    @Column(nullable = false,columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String urlImagenMascota;
     @Column(nullable = false)
     private boolean disponibilidad;
     @Lob
-    @Column(nullable = false,columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String otrasCaracteristicas;
 
     @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
